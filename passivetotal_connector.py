@@ -181,7 +181,7 @@ class PassivetotalConnector(BaseConnector):
 
         # make the call
         try:
-            r = requests.get('{}{}'.format(self._base_url, endpoint),
+            r = requests.get('{}{}'.format(self._base_url, endpoint),    # nosemgrep: python.requests.best-practice.use-timeout.use-timeout
                              auth=(self._handle_py_ver_compat_for_input_str(config[PASSIVETOTAL_JSON_KEY], True),
                              config[PASSIVETOTAL_JSON_SECRET]),
                              params=params,
