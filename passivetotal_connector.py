@@ -15,21 +15,20 @@
 #
 #
 # Phantom imports
+import ipaddress
+import json
+import sys
+from datetime import datetime, timedelta
+
 import phantom.app as phantom
-from phantom.base_connector import BaseConnector
-from phantom.action_result import ActionResult
 import phantom.utils as ph_utils
+import requests
+from bs4 import UnicodeDammit
+from phantom.action_result import ActionResult
+from phantom.base_connector import BaseConnector
 
 # THIS Connector imports
 from passivetotal_consts import *
-
-from datetime import datetime
-from datetime import timedelta
-from bs4 import UnicodeDammit
-import requests
-import json
-import ipaddress
-import sys
 
 
 class PassivetotalConnector(BaseConnector):
@@ -183,7 +182,8 @@ class PassivetotalConnector(BaseConnector):
         # make the call
         try:
             r = requests.get('{}{}'.format(self._base_url, endpoint),
-                             auth=(self._handle_py_ver_compat_for_input_str(config[PASSIVETOTAL_JSON_KEY], True), config[PASSIVETOTAL_JSON_SECRET]),
+                             auth=(self._handle_py_ver_compat_for_input_str(config[PASSIVETOTAL_JSON_KEY], True),
+                             config[PASSIVETOTAL_JSON_SECRET]),
                              params=params,
                              headers=self._headers)
         except Exception as exc:
@@ -595,7 +595,8 @@ class PassivetotalConnector(BaseConnector):
         query = param[PASSIVETOTAL_JSON_QUERY]
         field = param[PASSIVETOTAL_JSON_FIELD]
         if field not in PASSIVETOTAL_FIELD_VALUE_LIST:
-            return action_result.set_status(phantom.APP_ERROR, PASSIVETOTAL_VALUE_LIST_VALIDATION_MSG.format(PASSIVETOTAL_FIELD_VALUE_LIST, 'field'))
+            return action_result.set_status(phantom.APP_ERROR,
+                                            PASSIVETOTAL_VALUE_LIST_VALIDATION_MSG.format(PASSIVETOTAL_FIELD_VALUE_LIST, 'field'))
 
         params = {
             "query": query,
@@ -680,7 +681,8 @@ class PassivetotalConnector(BaseConnector):
             return action_result.get_status()
 
         if direction not in PASSIVETOTAL_DIRECTION_VALUE_LIST:
-            return action_result.set_status(phantom.APP_ERROR, PASSIVETOTAL_VALUE_LIST_VALIDATION_MSG.format(PASSIVETOTAL_DIRECTION_VALUE_LIST, 'direction'))
+            return action_result.set_status(phantom.APP_ERROR,
+                                            PASSIVETOTAL_VALUE_LIST_VALIDATION_MSG.format(PASSIVETOTAL_DIRECTION_VALUE_LIST, 'direction'))
 
         if start_time and not self._is_date(start_time):
             return action_result.set_status(phantom.APP_ERROR,
@@ -762,8 +764,9 @@ class PassivetotalConnector(BaseConnector):
 
 if __name__ == '__main__':
 
-    import pudb
     import argparse
+
+    import pudb
 
     pudb.set_trace()
 
