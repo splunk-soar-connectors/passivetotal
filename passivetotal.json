@@ -13,7 +13,7 @@
     "fips_compliant": true,
     "python_version": "3",
     "latest_tested_versions": [
-        "Cloud v2 tested 12-24-2021"
+        "Cloud v2 tested 2-21-2020"
     ],
     "publisher": "Splunk",
     "package_name": "phantom_passivetotal",
