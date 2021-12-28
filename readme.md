@@ -21,3 +21,11 @@ according to the heatmap available on <https://community.riskiq.com>
     the query(field value), it returns an empty result array which should not be the case as we can
     see the results for the same on the UI. Reported issue
     [here](https://github.com/passivetotal/python_api/issues/23)
+## Port Information
+
+The app uses HTTP/ HTTPS protocol for communicating with the PassiveTotal server. Below are the default ports used by Splunk SOAR.
+
+SERVICE NAME | TRANSPORT PROTOCOL | PORT
+------------ | ------------------ | ----
+**http** | tcp | 80
+**https** | tcp | 443
