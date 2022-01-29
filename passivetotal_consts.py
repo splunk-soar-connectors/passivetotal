@@ -58,7 +58,7 @@ PASSIVETOTAL_MSG_GET_DOMAIN_TEST = "Querying a single domain to check credential
 PASSIVETOTAL_USING_BASE_URL = "Using url: {base_url}"
 
 # Rest API URL
-PASSIVETOTAL_REST_API_URL = "https://api.passivetotal.org/v2"
+PASSIVETOTAL_REST_API_URL = "https://api.riskiq.net/pt/v2"
 
 # actions supported by this app
 ACTION_ID_LOOKUP_IP = "lookup_ip"

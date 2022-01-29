@@ -294,7 +294,7 @@ class PassivetotalConnector(BaseConnector):
             if results:
                 extra_data[PASSIVETOTAL_JSON_SUBDOMAINS] = results
 
-        if (not extra_data) and (phantom.is_fail(ret_val)):
+        if not extra_data and phantom.is_fail(ret_val):
             # We don't seem to have any data _and_ the last call failed
             return action_result.get_status()
 
@@ -546,7 +546,7 @@ class PassivetotalConnector(BaseConnector):
         except Exception:
             return action_result.set_status(phantom.APP_ERROR, PASSIVETOTAL_RESPONSE_ERR_MSG)
 
-        if (not extra_data) and (phantom.is_fail(ret_val)):
+        if not extra_data and phantom.is_fail(ret_val):
             # We don't seem to have any data _and_ the last call failed
             return action_result.get_status()
 
@@ -556,8 +556,7 @@ class PassivetotalConnector(BaseConnector):
         action_result = self.add_action_result(ActionResult(dict(param)))
         query = param[PASSIVETOTAL_JSON_QUERY]
 
-        if len(query) != 40:
-            # Superficial input validation whether the input is a potential SHA1 hash to catch common errors
+        if not ph_utils.is_sha1(query):
             return action_result.set_status(phantom.APP_ERROR, 'Please provide a valid SHA1 Hash')
 
         extra_data = action_result.add_data({})
@@ -569,7 +568,7 @@ class PassivetotalConnector(BaseConnector):
             return action_result.get_status()
 
         try:
-            if ret_val and response:
+            if response:
                 extra_data[PASSIVETOTAL_JSON_SSL_CERTIFICATE] = response["results"]
                 summary.update({PASSIVETOTAL_JSON_TOTAL_RECORDS: len(response['results'])})
         except Exception:
@@ -582,7 +581,7 @@ class PassivetotalConnector(BaseConnector):
             return action_result.get_status()
 
         try:
-            if ret_val and response:
+            if response:
                 extra_data[PASSIVETOTAL_JSON_SSL_CERTIFICATES] = response["results"]
         except Exception:
             return action_result.set_status(phantom.APP_ERROR, PASSIVETOTAL_RESPONSE_ERR_MSG)
@@ -611,7 +610,7 @@ class PassivetotalConnector(BaseConnector):
             return action_result.get_status()
 
         try:
-            if ret_val and response:
+            if response:
                 extra_data[PASSIVETOTAL_JSON_SSL_CERTIFICATES] = response["results"]
                 summary.update({PASSIVETOTAL_JSON_TOTAL_RECORDS: len(response['results'])})
         except Exception:
@@ -657,7 +656,7 @@ class PassivetotalConnector(BaseConnector):
             return action_result.get_status()
 
         try:
-            if ret_val and response:
+            if response:
                 extra_data[PASSIVETOTAL_JSON_COMPONENTS] = response["results"]
         except Exception:
             return action_result.set_status(phantom.APP_ERROR, PASSIVETOTAL_RESPONSE_ERR_MSG)
@@ -711,7 +710,7 @@ class PassivetotalConnector(BaseConnector):
         if phantom.is_fail(ret_val):
             return action_result.get_status()
         try:
-            if ret_val and response:
+            if response:
                 extra_data[PASSIVETOTAL_JSON_PAIRS] = response["results"]
         except Exception:
             return action_result.set_status(phantom.APP_ERROR, PASSIVETOTAL_RESPONSE_ERR_MSG)
@@ -784,13 +783,13 @@ if __name__ == '__main__':
     password = args.password
     verify = args.verify
 
-    if (username is not None and password is None):
+    if username is not None and password is None:
         # User specified a username but not a password, so ask
         import getpass
 
         password = getpass.getpass("Password: ")
 
-    if (username and password):
+    if username and password:
         login_url = BaseConnector._get_phantom_base_url() + "login"
         try:
             print("Accessing the Login page")
@@ -822,7 +821,7 @@ if __name__ == '__main__':
         connector = PassivetotalConnector()
         connector.print_progress_message = True
 
-        if (session_id is not None):
+        if session_id is not None:
             in_json['user_session_token'] = session_id
             connector._set_csrf_info(csrftoken, headers['Referer'])
 

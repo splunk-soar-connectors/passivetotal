@@ -4,12 +4,12 @@
     "description": "This app implements investigative actions by integrating with the PassiveTotal cloud reputation service",
     "type": "reputation",
     "main_module": "passivetotal_connector.py",
-    "app_version": "2.2.4",
+    "app_version": "2.3.0",
     "utctime_updated": "2022-01-13T00:27:35.000000Z",
     "product_vendor": "PassiveTotal",
     "product_name": "PassiveTotal",
     "product_version_regex": ".*",
-    "min_phantom_version": "5.0.0",
+    "min_phantom_version": "5.1.0",
     "fips_compliant": true,
     "python_version": "3",
     "latest_tested_versions": [
@@ -19,7 +19,7 @@
     "package_name": "phantom_passivetotal",
     "logo": "logo_passivetotal.svg",
     "logo_dark": "logo_passivetotal_dark.svg",
-    "license": "Copyright (c) 2016-2021 Splunk Inc.",
+    "license": "Copyright (c) 2016-2022 Splunk Inc.",
     "configuration": {
         "key": {
             "data_type": "string",
@@ -594,9 +594,9 @@
                 },
                 {
                     "data_path": "action_result.data.*.metadata.autonomousSystemNumber",
-                    "data_type": "string",
+                    "data_type": "numeric",
                     "example_values": [
-                        "56320-57343"
+                        56320
                     ]
                 },
                 {
@@ -1385,6 +1385,13 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.data.*.domainStatus",
+                    "data_type": "string",
+                    "example_values": [
+                        "active"
+                    ]
+                },
+                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "example_values": [
@@ -1841,6 +1848,13 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.data.*.domainStatus",
+                    "data_type": "string",
+                    "example_values": [
+                        "delete prohibited,transfer prohibited,renew prohibited,update prohibited"
+                    ]
+                },
+                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "example_values": [
@@ -1938,21 +1952,28 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.ssl_certificate.*.firstSeen",
+                    "data_path": "action_result.data.*.ssl_certificate.*.sslVersion",
                     "data_type": "string",
+                    "example_values": [
+                        "3"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.ssl_certificate.*.firstSeen",
+                    "data_type": "numeric",
                     "column_name": "First Seen",
                     "column_order": 0,
                     "example_values": [
-                        "2018-10-22"
+                        1450684800000
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.ssl_certificate.*.lastSeen",
-                    "data_type": "string",
+                    "data_type": "numeric",
                     "column_name": "Last Seen",
                     "column_order": 1,
                     "example_values": [
-                        "2018-10-22"
+                        1450684800000
                     ]
                 },
                 {
@@ -2202,14 +2223,14 @@
                     "data_path": "action_result.message",
                     "data_type": "string",
                     "example_values": [
-                        "City: San Francisco, Country: us, Organization: Abc, Inc."
+                        "Total records: 10"
                     ]
                 },
                 {
-                    "data_path": "action_result.summary",
-                    "data_type": "string",
+                    "data_path": "action_result.summary.total_records",
+                    "data_type": "numeric",
                     "example_values": [
-                        "Total records: 10"
+                        10
                     ]
                 },
                 {
@@ -2304,20 +2325,20 @@
                 },
                 {
                     "data_path": "action_result.data.*.ssl_certificates.*.firstSeen",
-                    "data_type": "string",
+                    "data_type": "numeric",
                     "column_name": "First Seen",
                     "column_order": 0,
                     "example_values": [
-                        "2018-10-22"
+                        1450684800000
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.ssl_certificates.*.lastSeen",
-                    "data_type": "string",
+                    "data_type": "numeric",
                     "column_name": "Last Seen",
                     "column_order": 1,
                     "example_values": [
-                        "2018-10-22"
+                        1450684800000
                     ]
                 },
                 {
@@ -2528,6 +2549,13 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.data.*.ssl_certificates.*.sslVersion",
+                    "data_type": "string",
+                    "example_values": [
+                        "3"
+                    ]
+                },
+                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "example_values": [
@@ -2539,14 +2567,14 @@
                     "data_path": "action_result.message",
                     "data_type": "string",
                     "example_values": [
-                        "City: San Francisco, Country: us, Organization: Abc, Inc."
+                        "Total Records: 10"
                     ]
                 },
                 {
-                    "data_path": "action_result.summary",
-                    "data_type": "string",
+                    "data_path": "action_result.summary.total_records",
+                    "data_type": "numeric",
                     "example_values": [
-                        "Total Records: 10"
+                        10
                     ]
                 },
                 {
@@ -2676,6 +2704,13 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.data.*.components.*.address",
+                    "data_type": "string",
+                    "example_values": [
+                        "0.0.0.0"
+                    ]
+                },
+                {
                     "data_path": "action_result.data.*.components.*.lastSeen",
                     "data_type": "string",
                     "column_name": "Last Seen",
@@ -2705,14 +2740,14 @@
                     "data_path": "action_result.message",
                     "data_type": "string",
                     "example_values": [
-                        "City: San Francisco, Country: us, Organization: Abc, Inc."
+                        "Total Records: 10"
                     ]
                 },
                 {
-                    "data_path": "action_result.summary",
-                    "data_type": "string",
+                    "data_path": "action_result.summary.total_records",
+                    "data_type": "numeric",
                     "example_values": [
-                        "Total Records: 10"
+                        10
                     ]
                 },
                 {
@@ -2883,14 +2918,14 @@
                     "data_path": "action_result.message",
                     "data_type": "string",
                     "example_values": [
-                        "City: San Francisco, Country: us, Organization: Abc, Inc."
+                        "Total Records: 10"
                     ]
                 },
                 {
-                    "data_path": "action_result.summary",
-                    "data_type": "string",
+                    "data_path": "action_result.summary.total_records",
+                    "data_type": "numeric",
                     "example_values": [
-                        "Total Records: 10"
+                        10
                     ]
                 },
                 {
