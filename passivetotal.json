@@ -171,7 +171,7 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.metadata.global_tags",
+                    "data_path": "action_result.data.*.metadata.global_tags.*",
                     "data_type": "string",
                     "example_values": [
                         "alexa_top_10k"
@@ -231,21 +231,21 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.metadata.subdomains",
+                    "data_path": "action_result.data.*.metadata.subdomains.*",
                     "data_type": "string",
                     "example_values": [
                         "zz-tr"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.metadata.system_tags",
+                    "data_path": "action_result.data.*.metadata.system_tags.*",
                     "data_type": "string",
                     "example_values": [
                         "hashes"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.metadata.tags",
+                    "data_path": "action_result.data.*.metadata.tags.*",
                     "data_type": "string",
                     "example_values": [
                         "alexa_top_10k"
@@ -347,7 +347,7 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.passive.results.*.source",
+                    "data_path": "action_result.data.*.passive.results.*.source.*",
                     "data_type": "string",
                     "example_values": [
                         "riskiq"
@@ -376,14 +376,14 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.tags",
+                    "data_path": "action_result.data.*.tags.*",
                     "data_type": "string",
                     "example_values": [
                         "alexa_top_10k"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.unique",
+                    "data_path": "action_result.data.*.unique.*",
                     "data_type": "string",
                     "contains": [
                         "domain"
@@ -502,8 +502,8 @@
             ],
             "render": {
                 "width": 12,
-                "title": "Domain Reputation",
-                "type": "table",
+                "type": "custom",
+                "view": "passivetotal_view.display_view",
                 "height": 5
             },
             "versions": "EQ(*)"
@@ -634,7 +634,7 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.metadata.global_tags",
+                    "data_path": "action_result.data.*.metadata.global_tags.*",
                     "data_type": "string",
                     "example_values": [
                         "Abc"
@@ -698,14 +698,14 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.metadata.system_tags",
+                    "data_path": "action_result.data.*.metadata.system_tags.*",
                     "data_type": "string",
                     "example_values": [
                         "routable"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.metadata.tags",
+                    "data_path": "action_result.data.*.metadata.tags.*",
                     "data_type": "string",
                     "example_values": [
                         "alexa_top_10k"
@@ -807,7 +807,7 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.passive.results.*.source",
+                    "data_path": "action_result.data.*.passive.results.*.source.*",
                     "data_type": "string",
                     "example_values": [
                         "riskiq"
@@ -847,7 +847,7 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.ssl_certificates.*.ipAddresses",
+                    "data_path": "action_result.data.*.ssl_certificates.*.ipAddresses.*",
                     "data_type": "string",
                     "contains": [
                         "ip",
@@ -875,14 +875,14 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.tags",
+                    "data_path": "action_result.data.*.tags.*",
                     "data_type": "string",
                     "example_values": [
                         "Abc"
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.unique",
+                    "data_path": "action_result.data.*.unique.*",
                     "data_type": "string",
                     "contains": [
                         "domain"
@@ -995,8 +995,8 @@
             ],
             "render": {
                 "width": 12,
-                "title": "Ip Reputation",
-                "type": "table",
+                "type": "custom",
+                "view": "passivetotal_view.display_view",
                 "height": 5
             },
             "versions": "EQ(*)"
@@ -1364,6 +1364,10 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.data.*.nameServers.*",
+                    "data_type": "string"
+                },
+                {
                     "data_path": "action_result.data.*.zone.email",
                     "data_type": "string",
                     "contains": [
@@ -1625,7 +1629,7 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.nameServers",
+                    "data_path": "action_result.data.*.nameServers.*",
                     "data_type": "string",
                     "contains": [
                         "domain"
@@ -1981,6 +1985,9 @@
                     "data_type": "string",
                     "example_values": [
                         "240461b20dbb24a61b0a986821c2ad01bd3a8522"
+                    ],
+                    "contains": [
+                        "sha1"
                     ]
                 },
                 {
@@ -2049,6 +2056,10 @@
                     "example_values": [
                         "Surname"
                     ]
+                },
+                {
+                    "data_path": "action_result.data.*.ssl_certificate.*.subjectAlternativeNames.*",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.ssl_certificate.*.issuerGivenName",
@@ -2188,6 +2199,9 @@
                     "data_type": "string",
                     "example_values": [
                         "1c51e98fb3342365ca29bfe78d7533b7aa9f1b2d"
+                    ],
+                    "contains": [
+                        "sha1"
                     ]
                 },
                 {
@@ -2205,10 +2219,14 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.data.*.ssl_certificates.*.ipAddresses",
+                    "data_path": "action_result.data.*.ssl_certificates.*.ipAddresses.*",
                     "data_type": "string",
                     "example_values": [
                         "8.8.8.8"
+                    ],
+                    "contains": [
+                        "ip",
+                        "passivetotal ipv6"
                     ]
                 },
                 {
@@ -2346,6 +2364,9 @@
                     "data_type": "string",
                     "example_values": [
                         "240461b20dbb24a61b0a986821c2ad01bd3a8522"
+                    ],
+                    "contains": [
+                        "sha1"
                     ]
                 },
                 {
@@ -2414,6 +2435,10 @@
                     "example_values": [
                         "Surname"
                     ]
+                },
+                {
+                    "data_path": "action_result.data.*.ssl_certificates.*.subjectAlternativeNames.*",
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.ssl_certificates.*.issuerGivenName",
@@ -2716,7 +2741,7 @@
                     "column_name": "Last Seen",
                     "column_order": 8,
                     "example_values": [
-                        "2018-09-01"
+                        "2018-09-01 07:09:57"
                     ]
                 },
                 {
@@ -2725,7 +2750,7 @@
                     "column_name": "First Seen",
                     "column_order": 9,
                     "example_values": [
-                        "2018-08-01"
+                        "2018-08-01 07:09:57"
                     ]
                 },
                 {
@@ -2894,7 +2919,7 @@
                     "column_name": "Last Seen",
                     "column_order": 8,
                     "example_values": [
-                        "2018-09-01"
+                        "2018-09-01 07:09:57"
                     ]
                 },
                 {
@@ -2903,7 +2928,7 @@
                     "column_name": "First Seen",
                     "column_order": 9,
                     "example_values": [
-                        "2018-08-01"
+                        "2018-08-01 05:03:16"
                     ]
                 },
                 {

@@ -456,7 +456,7 @@ class PassivetotalConnector(BaseConnector):
         action_result.update_summary({
             'city': registrant.get('city'),
             'country': registrant.get('country'),
-            'organization': registrant.get('organization')})
+            'organization': response.get('organization')})
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
