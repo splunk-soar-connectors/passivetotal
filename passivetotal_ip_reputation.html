@@ -109,8 +109,20 @@ and limitations under the License.
                             <span class="fa fa-caret-down" style="font-size: smaller;"></span><br>
                         </a>
                     </td>
-                    <td>{{ result.summary.ever_compromised | default_if_none:"None" }}</td>
-                    <td>{{ result.summary.sinkhole | default_if_none:"None" }}</td>
+                    <td>
+                        {% if "ever_compromised" in result.summary %}
+                            {{ result.summary.ever_compromised }}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if "sinkhole" in result.summary %}
+                            {{ result.summary.sinkhole }}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </td>
                     <td>{{ result.summary.country | default:"None" }}</td>
                 </tr>
             </tbody>

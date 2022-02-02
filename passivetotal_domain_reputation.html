@@ -112,12 +112,30 @@ and limitations under the License.
                             <span class="fa fa-caret-down" style="font-size: smaller;"></span><br>
                         </a>
                     </td>
-                    <td>{{ result.summary.ever_compromised | default_if_none:"None" }}</td>
-                    <td>{{ result.summary.classification | default_if_none:"None" }}</td>
-                    <td>{{ result.summary.total_unique_domains | default_if_none:"None" }}</td>
-                    <td>{{ result.summary.first_seen | default_if_none:"None" }}</td>
-                    <td>{{ result.summary.last_seen | default_if_none:"None" }}</td>
-                    <td>{{ result.summary.dynamic_domain | default_if_none:"None" }}</td>
+                    <td>
+                        {% if "ever_compromised" in result.summary %}
+                            {{ result.summary.ever_compromised }}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </td>
+                    <td>{{ result.summary.classification | default:"None" }}</td>
+                    <td>
+                        {% if "total_unique_domains" in result.summary %}
+                            {{ result.summary.total_unique_domains }}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </td>
+                    <td>{{ result.summary.first_seen | default:"None" }}</td>
+                    <td>{{ result.summary.last_seen | default:"None" }}</td>
+                    <td>
+                        {% if "dynamic_domain" in result.summary %}
+                            {{ result.summary.dynamic_domain }}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </td>
                 </tr>
             </tbody>
         </table>
