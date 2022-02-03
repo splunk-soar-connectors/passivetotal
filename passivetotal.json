@@ -47,7 +47,7 @@
         },
         {
             "action": "domain reputation",
-            "description": "Get domain info/reputation",
+            "description": "Get domain information/reputation",
             "verbose": "Passive information about a domain could get very large, because of which the calls could timeout. Use the <b>from</b> and <b>to</b> parameters to limit the passive data to query between a time range. If <b>from</b> parameter is not specified, the action gets data for the past 30 days.",
             "type": "investigate",
             "identifier": "lookup_domain",
@@ -510,7 +510,7 @@
         },
         {
             "action": "ip reputation",
-            "description": "Get IP info/reputation ",
+            "description": "Get IP information/reputation ",
             "verbose": "Passive information about an IP could get very large, resulting in timeouts. Use the <b>from</b> and <b>to</b> parameters to limit the passive data to query between a time range. If <b>from</b> parameter is not specified, the action gets data for the past 30 days.",
             "type": "investigate",
             "identifier": "lookup_ip",
@@ -1003,7 +1003,7 @@
         },
         {
             "action": "whois ip",
-            "description": "Get IP WHOIS info",
+            "description": "Get IP WHOIS information",
             "type": "investigate",
             "identifier": "whois_ip",
             "read_only": true,
@@ -1462,7 +1462,7 @@
         },
         {
             "action": "whois domain",
-            "description": "Get domain WHOIS info",
+            "description": "Get domain WHOIS information",
             "type": "investigate",
             "identifier": "whois_domain",
             "read_only": true,
@@ -2640,12 +2640,12 @@
                     "required": true
                 },
                 "from": {
-                    "description": "Start datetime (YYYY-MM-DD)",
+                    "description": "The start date for Passive data (YYYY-MM-DD)",
                     "data_type": "string",
                     "order": 1
                 },
                 "to": {
-                    "description": "End datetime (YYYY-MM-DD)",
+                    "description": "The end date for Passive data (YYYY-MM-DD)",
                     "data_type": "string",
                     "order": 2
                 },
@@ -2668,8 +2668,6 @@
                 {
                     "data_path": "action_result.parameter.from",
                     "data_type": "string",
-                    "column_name": "Start Date",
-                    "column_order": 1,
                     "example_values": [
                         "2018-09-01"
                     ]
@@ -2677,8 +2675,6 @@
                 {
                     "data_path": "action_result.parameter.to",
                     "data_type": "string",
-                    "column_name": "End Date",
-                    "column_order": 2,
                     "example_values": [
                         "2018-10-01"
                     ]
@@ -2687,7 +2683,7 @@
                     "data_path": "action_result.parameter.page",
                     "data_type": "numeric",
                     "column_name": "Page",
-                    "column_order": 3,
+                    "column_order": 1,
                     "example_values": [
                         1
                     ]
@@ -2696,7 +2692,7 @@
                     "data_path": "action_result.data.*.components.*.label",
                     "data_type": "string",
                     "column_name": "Label",
-                    "column_order": 4,
+                    "column_order": 2,
                     "example_values": [
                         "CloudFlare"
                     ]
@@ -2705,7 +2701,7 @@
                     "data_path": "action_result.data.*.components.*.version",
                     "data_type": "string",
                     "column_name": "Version",
-                    "column_order": 5,
+                    "column_order": 3,
                     "example_values": [
                         "1.7.0"
                     ]
@@ -2714,7 +2710,7 @@
                     "data_path": "action_result.data.*.components.*.category",
                     "data_type": "string",
                     "column_name": "Category",
-                    "column_order": 6,
+                    "column_order": 4,
                     "example_values": [
                         "CDN"
                     ]
@@ -2723,7 +2719,7 @@
                     "data_path": "action_result.data.*.components.*.hostname",
                     "data_type": "string",
                     "column_name": "Host Name",
-                    "column_order": 7,
+                    "column_order": 5,
                     "example_values": [
                         "www.abc.com"
                     ]
@@ -2739,7 +2735,7 @@
                     "data_path": "action_result.data.*.components.*.lastSeen",
                     "data_type": "string",
                     "column_name": "Last Seen",
-                    "column_order": 8,
+                    "column_order": 6,
                     "example_values": [
                         "2018-09-01 07:09:57"
                     ]
@@ -2748,7 +2744,7 @@
                     "data_path": "action_result.data.*.components.*.firstSeen",
                     "data_type": "string",
                     "column_name": "First Seen",
-                    "column_order": 9,
+                    "column_order": 7,
                     "example_values": [
                         "2018-08-01 07:09:57"
                     ]
@@ -2801,7 +2797,7 @@
         {
             "action": "get host pairs",
             "description": "Retrieves the host attribute pairs related to the query",
-            "verbose": "<p>Per page maximum 2000 record we got. If more data exist then use the 'page' parameter for pagination.</p>",
+            "verbose": "<p>By default, 2000 records will be fetched per page. If more data exists, then use the 'page' parameter for pagination.</p>",
             "type": "investigate",
             "identifier": "get_host_pairs",
             "read_only": true,
@@ -2824,12 +2820,12 @@
                     ]
                 },
                 "from": {
-                    "description": "Start datetime (YYYY-MM-DD)",
+                    "description": "The start date for Passive data (YYYY-MM-DD)",
                     "data_type": "string",
                     "order": 2
                 },
                 "to": {
-                    "description": "End datetime (YYYY-MM-DD)",
+                    "description": "The end date for Passive data (YYYY-MM-DD)",
                     "data_type": "string",
                     "order": 3
                 },
@@ -2862,8 +2858,6 @@
                 {
                     "data_path": "action_result.parameter.from",
                     "data_type": "string",
-                    "column_name": "Start Date",
-                    "column_order": 2,
                     "example_values": [
                         "2020-01-13"
                     ]
@@ -2871,8 +2865,6 @@
                 {
                     "data_path": "action_result.parameter.to",
                     "data_type": "string",
-                    "column_name": "End Date",
-                    "column_order": 3,
                     "example_values": [
                         "2020-02-13"
                     ]
@@ -2881,7 +2873,7 @@
                     "data_path": "action_result.parameter.page",
                     "data_type": "numeric",
                     "column_name": "Page",
-                    "column_order": 4,
+                    "column_order": 2,
                     "example_values": [
                         1
                     ]
@@ -2890,7 +2882,7 @@
                     "data_path": "action_result.data.*.pairs.*.cause",
                     "data_type": "string",
                     "column_name": "Cause",
-                    "column_order": 5,
+                    "column_order": 3,
                     "example_values": [
                         "topLevelRedirect"
                     ]
@@ -2899,7 +2891,7 @@
                     "data_path": "action_result.data.*.pairs.*.child",
                     "data_type": "string",
                     "column_name": "Child",
-                    "column_order": 6,
+                    "column_order": 4,
                     "example_values": [
                         "www.seagateshare.com"
                     ]
@@ -2908,7 +2900,7 @@
                     "data_path": "action_result.data.*.pairs.*.parent",
                     "data_type": "string",
                     "column_name": "Parent",
-                    "column_order": 7,
+                    "column_order": 5,
                     "example_values": [
                         "86.152.19.0"
                     ]
@@ -2917,7 +2909,7 @@
                     "data_path": "action_result.data.*.pairs.*.lastSeen",
                     "data_type": "string",
                     "column_name": "Last Seen",
-                    "column_order": 8,
+                    "column_order": 6,
                     "example_values": [
                         "2018-09-01 07:09:57"
                     ]
@@ -2926,7 +2918,7 @@
                     "data_path": "action_result.data.*.pairs.*.firstSeen",
                     "data_type": "string",
                     "column_name": "First Seen",
-                    "column_order": 9,
+                    "column_order": 7,
                     "example_values": [
                         "2018-08-01 05:03:16"
                     ]
