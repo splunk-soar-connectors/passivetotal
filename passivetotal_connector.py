@@ -47,7 +47,7 @@ class PassivetotalConnector(BaseConnector):
         # Fetching the Python major version
         try:
             self._python_version = int(sys.version_info[0])
-        except:
+        except Exception:
             return self.set_status(phantom.APP_ERROR,
                                    "Error occurred while fetching the Phantom server's Python major version")
 
@@ -68,7 +68,7 @@ class PassivetotalConnector(BaseConnector):
         try:
             if input_str and (self._python_version == 2 or always_encode):
                 input_str = UnicodeDammit(input_str).unicode_markup.encode('utf-8')
-        except:
+        except Exception:
             self.debug_print("Error occurred while handling python 2to3 compatibility for the input string")
 
         return input_str
@@ -90,7 +90,7 @@ class PassivetotalConnector(BaseConnector):
             else:
                 error_code = PASSIVETOTAL_ERR_CODE_UNAVAILABLE
                 error_msg = PASSIVETOTAL_ERR_MSG_UNAVAILABLE
-        except:
+        except Exception:
             error_code = PASSIVETOTAL_ERR_CODE_UNAVAILABLE
             error_msg = PASSIVETOTAL_ERR_MSG_UNAVAILABLE
 
@@ -98,7 +98,7 @@ class PassivetotalConnector(BaseConnector):
             error_msg = self._handle_py_ver_compat_for_input_str(error_msg)
         except TypeError:
             error_msg = PASSIVETOTAL_UNICODE_DAMMIT_TYPE_ERR_MSG
-        except:
+        except Exception:
             error_msg = PASSIVETOTAL_ERR_MSG_UNAVAILABLE
 
         try:
@@ -106,7 +106,7 @@ class PassivetotalConnector(BaseConnector):
                 error_text = "Error Message: {0}".format(error_msg)
             else:
                 error_text = "Error Code: {0}. Error Message: {1}".format(error_code, error_msg)
-        except:
+        except Exception:
             self.debug_print(PASSIVETOTAL_PARSE_ERR_MSG)
             error_text = PASSIVETOTAL_PARSE_ERR_MSG
 
@@ -123,7 +123,7 @@ class PassivetotalConnector(BaseConnector):
 
         try:
             ipaddress.ip_address(str(ip_address_input))
-        except:
+        except Exception:
             return False
 
         return True
@@ -159,7 +159,7 @@ class PassivetotalConnector(BaseConnector):
                     return action_result.set_status(phantom.APP_ERROR, VALID_INTEGER_MSG.format(key)), None
 
                 parameter = int(parameter)
-            except:
+            except Exception:
                 return action_result.set_status(phantom.APP_ERROR, VALID_INTEGER_MSG.format(key)), None
 
             if parameter < 0:
@@ -200,7 +200,7 @@ class PassivetotalConnector(BaseConnector):
         # Try parsing the result as a json
         try:
             resp_json = r.json()
-        except:
+        except Exception:
             # not a json, dump whatever was returned into the action result
             details = self._handle_py_ver_compat_for_input_str(r.text.replace('{', '').replace('}', ''))
             action_result.set_status(phantom.APP_ERROR,
@@ -294,7 +294,7 @@ class PassivetotalConnector(BaseConnector):
             if results:
                 extra_data[PASSIVETOTAL_JSON_SUBDOMAINS] = results
 
-        if (not extra_data) and (phantom.is_fail(ret_val)):
+        if not extra_data and phantom.is_fail(ret_val):
             # We don't seem to have any data _and_ the last call failed
             return action_result.get_status()
 
@@ -456,7 +456,7 @@ class PassivetotalConnector(BaseConnector):
         action_result.update_summary({
             'city': registrant.get('city'),
             'country': registrant.get('country'),
-            'organization': registrant.get('organization')})
+            'organization': registrant['organization'] if registrant.get('organization') else response.get('organization')})
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
@@ -493,7 +493,7 @@ class PassivetotalConnector(BaseConnector):
         action_result.update_summary({
             'city': registrant.get('city'),
             'country': registrant.get('country'),
-            'organization': registrant.get('organization')})
+            'organization': registrant['organization'] if registrant.get('organization') else response.get('organization')})
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
@@ -546,7 +546,7 @@ class PassivetotalConnector(BaseConnector):
         except Exception:
             return action_result.set_status(phantom.APP_ERROR, PASSIVETOTAL_RESPONSE_ERR_MSG)
 
-        if (not extra_data) and (phantom.is_fail(ret_val)):
+        if not extra_data and phantom.is_fail(ret_val):
             # We don't seem to have any data _and_ the last call failed
             return action_result.get_status()
 
@@ -556,8 +556,7 @@ class PassivetotalConnector(BaseConnector):
         action_result = self.add_action_result(ActionResult(dict(param)))
         query = param[PASSIVETOTAL_JSON_QUERY]
 
-        if len(query) != 40:
-            # Superficial input validation whether the input is a potential SHA1 hash to catch common errors
+        if not ph_utils.is_sha1(query):
             return action_result.set_status(phantom.APP_ERROR, 'Please provide a valid SHA1 Hash')
 
         extra_data = action_result.add_data({})
@@ -569,7 +568,7 @@ class PassivetotalConnector(BaseConnector):
             return action_result.get_status()
 
         try:
-            if ret_val and response:
+            if response:
                 extra_data[PASSIVETOTAL_JSON_SSL_CERTIFICATE] = response["results"]
                 summary.update({PASSIVETOTAL_JSON_TOTAL_RECORDS: len(response['results'])})
         except Exception:
@@ -582,7 +581,7 @@ class PassivetotalConnector(BaseConnector):
             return action_result.get_status()
 
         try:
-            if ret_val and response:
+            if response:
                 extra_data[PASSIVETOTAL_JSON_SSL_CERTIFICATES] = response["results"]
         except Exception:
             return action_result.set_status(phantom.APP_ERROR, PASSIVETOTAL_RESPONSE_ERR_MSG)
@@ -611,7 +610,7 @@ class PassivetotalConnector(BaseConnector):
             return action_result.get_status()
 
         try:
-            if ret_val and response:
+            if response:
                 extra_data[PASSIVETOTAL_JSON_SSL_CERTIFICATES] = response["results"]
                 summary.update({PASSIVETOTAL_JSON_TOTAL_RECORDS: len(response['results'])})
         except Exception:
@@ -657,7 +656,7 @@ class PassivetotalConnector(BaseConnector):
             return action_result.get_status()
 
         try:
-            if ret_val and response:
+            if response:
                 extra_data[PASSIVETOTAL_JSON_COMPONENTS] = response["results"]
         except Exception:
             return action_result.set_status(phantom.APP_ERROR, PASSIVETOTAL_RESPONSE_ERR_MSG)
@@ -711,7 +710,7 @@ class PassivetotalConnector(BaseConnector):
         if phantom.is_fail(ret_val):
             return action_result.get_status()
         try:
-            if ret_val and response:
+            if response:
                 extra_data[PASSIVETOTAL_JSON_PAIRS] = response["results"]
         except Exception:
             return action_result.set_status(phantom.APP_ERROR, PASSIVETOTAL_RESPONSE_ERR_MSG)
@@ -784,13 +783,13 @@ if __name__ == '__main__':
     password = args.password
     verify = args.verify
 
-    if (username is not None and password is None):
+    if username is not None and password is None:
         # User specified a username but not a password, so ask
         import getpass
 
         password = getpass.getpass("Password: ")
 
-    if (username and password):
+    if username and password:
         login_url = BaseConnector._get_phantom_base_url() + "login"
         try:
             print("Accessing the Login page")
@@ -822,7 +821,7 @@ if __name__ == '__main__':
         connector = PassivetotalConnector()
         connector.print_progress_message = True
 
-        if (session_id is not None):
+        if session_id is not None:
             in_json['user_session_token'] = session_id
             connector._set_csrf_info(csrftoken, headers['Referer'])
 
