@@ -2,7 +2,7 @@
 # PassiveTotal
 
 Publisher: Splunk  
-Connector Version: 2\.3\.0  
+Connector Version: 2\.3\.1  
 Product Vendor: PassiveTotal  
 Product Name: PassiveTotal  
 Product Version Supported (regex): "\.\*"  
