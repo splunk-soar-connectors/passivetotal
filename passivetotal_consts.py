@@ -1,6 +1,6 @@
 # File: passivetotal_consts.py
 #
-# Copyright (c) 2016-2021 Splunk Inc.
+# Copyright (c) 2016-2022 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 PASSIVETOTAL_JSON_DOMAIN = "domain"
 PASSIVETOTAL_JSON_IP = "ip"
 PASSIVETOTAL_JSON_KEY = "key"
-PASSIVETOTAL_JSON_SECRET = "secret"
+PASSIVETOTAL_JSON_SECRET = "secret"  # pragma: allowlist secret
 PASSIVETOTAL_JSON_CLASSIFICATION = "classification"
 PASSIVETOTAL_JSON_EVER_COMPROMISED = "ever_compromised"
 PASSIVETOTAL_JSON_DYNAMIC = "dynamic"
@@ -58,7 +58,7 @@ PASSIVETOTAL_MSG_GET_DOMAIN_TEST = "Querying a single domain to check credential
 PASSIVETOTAL_USING_BASE_URL = "Using url: {base_url}"
 
 # Rest API URL
-PASSIVETOTAL_REST_API_URL = "https://api.passivetotal.org/v2"
+PASSIVETOTAL_REST_API_URL = "https://api.riskiq.net/pt/v2"
 
 # actions supported by this app
 ACTION_ID_LOOKUP_IP = "lookup_ip"
