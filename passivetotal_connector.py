@@ -1,6 +1,6 @@
 # File: passivetotal_connector.py
 #
-# Copyright (c) 2016-2022 Splunk Inc.
+# Copyright (c) 2016-2023 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -590,6 +590,7 @@ class PassivetotalConnector(BaseConnector):
 
     def _lookup_certificate(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
+        self.save_progress("In action handler for: {}".format(self.get_action_identifier()))
 
         query = param[PASSIVETOTAL_JSON_QUERY]
         field = param[PASSIVETOTAL_JSON_FIELD]
@@ -620,6 +621,7 @@ class PassivetotalConnector(BaseConnector):
 
     def _get_host_components(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
+        self.save_progress("In action handler for: {}".format(self.get_action_identifier()))
 
         query = param[PASSIVETOTAL_JSON_QUERY]
         start_time = param.get(PASSIVETOTAL_JSON_FROM)
@@ -668,6 +670,7 @@ class PassivetotalConnector(BaseConnector):
 
     def _get_host_pairs(self, param):
         action_result = self.add_action_result(ActionResult(dict(param)))
+        self.save_progress("In action handler for: {}".format(self.get_action_identifier()))
 
         query = param[PASSIVETOTAL_JSON_QUERY]
         direction = param[PASSIVETOTAL_JSON_DIRECTION]
